@@ -1,0 +1,36 @@
+{% if not user.is_authenticated %} <!-- Lo coloque para evitar que un usuario AUTENTICADO pueda ingresar al indice a traves de la barra de direcciones -->
+<!doctype html>
+<html lang="en">
+
+<head>
+  {% include 'head.html'%}
+</head>
+
+<body>
+  {% include 'base.html'%}
+  <div class="row mt-4 mb-4">
+    {% for flan in flanes_publicos %}
+    <div class="col-6 col-md-3">
+      <a href="{% url 'detalle_flan' flan.id %}" class="card-link">
+        <!-- Vinculo para mostrar pagina con cada flan especifico -->
+        <div class="card mb-4">
+          <img src="{{ flan.image_url }}" class="card-img-top" alt="..." width="380" height="280">
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ flan.name }}
+            </h5>
+            <p class="card-text">
+              {{ flan.description }}
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  {% include 'footer.html'%}
+</body>
+
+</html>
+
+{% endif %}

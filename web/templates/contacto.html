@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  {% include 'head.html' %}
+</head>
+
+<body>
+  {% include 'base.html' %}
+  <div class="text-center">
+    <h1>Contactanos</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit">Enviar</button>
+  </div>
+
+  {% include 'footer.html'%}
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Detalle del Flan: {{ flan.name }}</title>
+    {% include 'head.html'%}
+</head>
+
+<body>
+    {% include 'base.html'%}
+    <div class="card mb-3" width="380" height="280">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{ flan.image_url }}" class="img-fluid rounded-start" alt="{{ flan.name }}">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ flan.name }}</h5>
+            <p class="card-text"><small class="text-body-secondary"><b>{{ flan.description }}</b></small></p>
+            <p class="card-text"><b>RECETA:</b> {{ flan.receta|linebreaks }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  {% include 'footer.html'%}
+</body>
+
+</html>

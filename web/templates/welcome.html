@@ -1,0 +1,56 @@
+</html>
+<!doctype html>
+<html lang="en">
+
+<head>
+  {% include 'head.html'%}
+</head>
+
+<body>
+  {% include 'base.html'%}
+  <nav class="navbar bg-body-tertiary" style="background-color: #e3f2fd;"> <!-- Cambio de color del Navbar -->
+    <div class="container-fluid">
+      <header>
+        <h3>Bienvenido {{user.get_username}}</h3>
+        <h5>Descubre todas las imagenes exclusivas que tenemos solo para ti</h5>
+      </header>
+    </div>
+  </nav>
+
+
+
+  <div class="container mt-4 mb-4">
+    <form method="post">
+      {% csrf_token %}
+      <!-- Creacion de los botones de filtrado, el color va en el class de cada button, revisar los colores de botones en Bootstraps -->
+      <div class="btn-group " role="group" aria-label="Filtrar" style = "display: flex;">
+        <button type="submit" class="btn btn-secondary" name="btn_privados">Flanes Privados</button>
+        <button type="submit" class="btn btn-warning" name="btn_publicos">Flanes Públicos</button>
+        <button type="submit" class="btn btn-dark" name="btn_todos">Todos los Flanes</button>
+      </div>  
+    </form>
+    <div class="row mt-4 mb-4">
+      {% for flan in flanes %}<!-- Cambie el flanes_privados a flanes para mostrar todos los flanes y poder filtrarlos -->
+      <div class="col-6 col-md-3">
+        <a href="{% url 'detalle_flan' flan.id %}" class="card-link">
+          <!-- Vinculo para mostrar pagina con cada flan especifico -->
+          <div class="card mb-4">
+            <img src="{{ flan.image_url }}" class="card-img-top" alt="..." width="380" height="280">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ flan.name }}
+              </h5>
+              <p class="card-text">
+                {{ flan.description }}
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+    {% include 'footer.html'%}
+</body>
+
+</html>
